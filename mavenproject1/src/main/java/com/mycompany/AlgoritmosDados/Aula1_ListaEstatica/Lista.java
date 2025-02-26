@@ -25,7 +25,7 @@ public class Lista {
      */
     private void redimensionar(){
         int[] novo = new int[info.length + 10];
-        for(int i = 0; i < tamanho; i++){
+        for(int i = 0; i < info.length; i++){
             novo[i] = info[i];
         }
         info = novo;
@@ -37,11 +37,11 @@ public class Lista {
      * @param novoNumero 
      */
     public void inserir(int novoNumero){
-        info[tamanho] = novoNumero;
-        tamanho++;
-        if(tamanho == 10){
+        if(tamanho == info.length){
             redimensionar();
         }
+        info[tamanho] = novoNumero;
+        tamanho++;
     }
     
    /**
@@ -75,16 +75,25 @@ public class Lista {
      * @param valor 
      */
     public void retirar(int valor){
-        boolean controler = false;
-        for(int i = 0; i < tamanho; i++){
-            if(info[i] == valor || controler == true){
-               info[i] = info[i + 1];
-               controler = true;
-            }
-        }
+//        boolean controler = false;
+//        for(int i = 0; i < tamanho; i++){
+//            if(info[i] == valor || controler == true){
+//               info[i] = info[i + 1];
+//               controler = true;
+//            }
+//        }
+//        
+//        if(controler == true){
+//            tamanho--;
+//        }    
+         int posicao = this.buscar(valor);
         
-        if(controler == true){
-            tamanho--;
+         if(posicao > -1){
+             for(int i = posicao; i < this.tamanho; i++){
+                info[i - 1] = info[i];
+             }
+            
+             this.tamanho--;
         }
     }
     
@@ -92,9 +101,8 @@ public class Lista {
      * Limpa todos os valores do array e volta ao seu tamanho com 10 posições 
      */
     public void liberar(){
-        int[] novo = new int[10];
-        info = novo;
-        tamanho = 0;
+        this.info = new int[10];
+        this.tamanho = 0;
     }
     
     /**
@@ -102,8 +110,12 @@ public class Lista {
      * @param posicao
      * @return 
      */
-    public int obterElemento(int posicao){
-        return info[posicao];
+    public int obterElemento(int posicao) throws IndexOutOfBoundsException{
+        if(posicao < 0 || posicao > this.tamanho){
+            throw new IndexOutOfBoundsException();
+        }
+        
+        return this.info[posicao];
     }
     
     /**
@@ -111,11 +123,7 @@ public class Lista {
      * @return 
      */
     public boolean estaVazia(){
-        if(tamanho == 0){
-            return true;
-        }else{
-            return false;
-        }
+        return this.tamanho == 0;
     }
     
     /**
