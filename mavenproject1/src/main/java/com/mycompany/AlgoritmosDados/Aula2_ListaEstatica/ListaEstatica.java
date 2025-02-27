@@ -8,11 +8,11 @@ package com.mycompany.AlgoritmosDados.Aula2_ListaEstatica;
  *
  * @author ludvig
  */
-public class ListaObj<AlgumaClasse> {
+public class ListaEstatica<AlgumaClasse> { //adicionado parametro para Aceitar Objetos especificados
     private Object[] info;
-    private int tamanho;
+    private int tamanho; 
     
-    public ListaObj(){
+    public ListaEstatica(){
         info = new Object[10];
         tamanho = 0;
     }
@@ -61,7 +61,10 @@ public class ListaObj<AlgumaClasse> {
      */
     public int buscar(AlgumaClasse valor){
         for(int i = 0; i < tamanho; i++){
-            if(info[i].equals(valor)){
+            if(info[i].equals(valor)){ 
+                //o .equals vai funcionar 
+                //melhor para quando usarmos o scaner 
+                //(apenas ve se o valor é igual, sem validar o edereco de memoria)
                 return i;
             }
         }
@@ -75,26 +78,27 @@ public class ListaObj<AlgumaClasse> {
      * @param valor 
      */
     public void retirar(AlgumaClasse valor){
-//        boolean controler = false;
-//        for(int i = 0; i < tamanho; i++){
-//            if(info[i] == valor || controler == true){
-//               info[i] = info[i + 1];
-//               controler = true;
-//            }
-//        }
-//        
-//        if(controler == true){
-//            tamanho--;
-//        }    
-         int posicao = this.buscar(valor);
+        boolean controler = false;
+        for(int i = 0; i < tamanho; i++){
+            if(info[i] == valor || controler == true){
+               info[i] = info[i + 1];
+               controler = true;
+            }
+       }
         
-         if(posicao > -1){
-             for(int i = posicao; i < this.tamanho; i++){
-                info[i - 1] = info[i];
-             }
-            
-             this.tamanho--;
-        }
+       if(controler == true){
+           info[tamanho - 1] = null;
+           tamanho--;
+        }    
+//         int posicao = this.buscar(valor);
+//        
+//         if(posicao > -1){
+//             for(int i = posicao; i < this.tamanho; i++){
+//                info[i - 1] = info[i];
+//             }
+//            
+//             this.tamanho--;
+//        }
     }
     
     /**
