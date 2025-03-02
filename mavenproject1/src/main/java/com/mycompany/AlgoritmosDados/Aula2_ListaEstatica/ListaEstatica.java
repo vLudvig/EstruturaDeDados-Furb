@@ -87,8 +87,7 @@ public class ListaEstatica<AlgumaClasse> { //adicionado parametro para Aceitar O
        }
         
        if(controler == true){
-           info[tamanho - 1] = null;
-           tamanho--;
+           info[--this.tamanho] = null;
         }    
 //         int posicao = this.buscar(valor);
 //        
@@ -149,5 +148,20 @@ public class ListaEstatica<AlgumaClasse> { //adicionado parametro para Aceitar O
             }
         }
         return texto;
+    }
+    
+    public void inverter(){
+        Object temp;
+        int inicio = 0;
+        int fim = this.tamanho - 1;
+        
+        while(inicio < fim){
+           temp = this.info[inicio];
+           this.info[inicio] = this.info[fim];
+           this.info[fim] = temp;
+           
+           inicio++;
+           fim--;
+        }
     }
 }

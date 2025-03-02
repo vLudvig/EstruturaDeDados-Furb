@@ -37,125 +37,202 @@ public class ListaEstaticaTest {
     }
 
     /**
-     * Test of inserir method, of class ListaEstatica.
+     * Testar método de inclusão de dados na lista
      */
     @Test
     public void testInserir() {
         System.out.println("inserir");
-        Object novoNumero = null;
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
         instance.inserir(novoNumero);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        assertEquals("5,10,15,20", instance.toString());
     }
 
     /**
-     * Test of exibir method, of class ListaEstatica.
+     * Testar método de obtenção de tamanho da lista
      */
     @Test
-    public void testExibir() {
-        System.out.println("exibir");
+    public void testGetTamanho() {
+        System.out.println("Obtenção de tamanho da lista");
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
-        instance.exibir();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        assertEquals(4, instance.getTamanho());
     }
 
     /**
-     * Test of buscar method, of class ListaEstatica.
+     * Testar método buscar() com elemento existente
      */
     @Test
     public void testBuscar() {
         System.out.println("buscar");
-        Object valor = null;
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
-        int expResult = 0;
-        int result = instance.buscar(valor);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        assertEquals(2, instance.buscar(15));
     }
 
     /**
-     * Test of retirar method, of class ListaEstatica.
+     * Testar método buscar() com elemento inexistente
+     */
+    @Test
+    public void testBuscarInexist() {
+        System.out.println("buscar inexistente");
+        int novoNumero = 5;
+        ListaEstatica instance = new ListaEstatica();
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        assertEquals(-1, instance.buscar(30));
+    }
+
+    /**
+     * Testar método retirar()
      */
     @Test
     public void testRetirar() {
-        System.out.println("retirar");
-        Object valor = null;
+        System.out.println("Retirar");
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
-        instance.retirar(valor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        instance.retirar(10);
+        
+        assertEquals("5,15,20", instance.toString());
+        assertEquals(3, instance.getTamanho());
     }
 
     /**
-     * Test of liberar method, of class ListaEstatica.
+     * Testar inclusão que provoque redimensionamento
      */
     @Test
-    public void testLiberar() {
-        System.out.println("liberar");
+    public void testRedimensionamento() {
+        System.out.println("Redimensionamento");
         ListaEstatica instance = new ListaEstatica();
-        instance.liberar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        for(int i = 0; i < 15; i++){
+            instance.inserir(i + 1);
+        }
+        
+        String expResultString = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
+        int expResultTamanho = 15;
+        
+        assertEquals(expResultString, instance.toString());
+        assertEquals(expResultTamanho, instance.getTamanho());
     }
 
     /**
-     * Test of obterElemento method, of class ListaEstatica.
+     * Obter Elemento.
      */
     @Test
     public void testObterElemento() {
-        System.out.println("obterElemento");
-        int posicao = 0;
+        System.out.println("ObterElemento");
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
-        Object expResult = null;
-        Object result = instance.obterElemento(posicao);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        assertEquals(20, instance.obterElemento(3));
     }
 
     /**
-     * Test of estaVazia method, of class ListaEstatica.
+     * Liberar
      */
     @Test
-    public void testEstaVazia() {
-        System.out.println("estaVazia");
-        ListaEstatica instance = new ListaEstatica();
-        boolean expResult = false;
-        boolean result = instance.estaVazia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTamanho method, of class ListaEstatica.
-     */
-    @Test
-    public void testGetTamanho() {
-        System.out.println("getTamanho");
-        ListaEstatica instance = new ListaEstatica();
-        int expResult = 0;
-        int result = instance.getTamanho();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class ListaEstatica.
-     */
-    @Test
-    public void testToString() {
+    public void testLiberar() {
         System.out.println("toString");
+        int novoNumero = 5;
         ListaEstatica instance = new ListaEstatica();
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        instance.liberar();
+        
+        assertEquals(true, instance.estaVazia());
     }
     
+    /**
+     * Inverter
+     */
+    @Test
+    public void testInverter1() {
+        System.out.println("Inverter");
+        int novoNumero = 5;
+        ListaEstatica instance = new ListaEstatica();
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        
+        instance.inverter();
+        
+        assertEquals("20,15,10,5", instance.toString());
+    }
+    
+    /**
+     * Inverter2
+     */
+    @Test
+    public void testInverter2() {
+        System.out.println("Inverter");
+        int novoNumero = 5;
+        ListaEstatica instance = new ListaEstatica();
+        instance.inserir(novoNumero);
+        novoNumero = 10;
+        instance.inserir(novoNumero);
+        novoNumero = 15;
+        instance.inserir(novoNumero);
+        novoNumero = 20;
+        instance.inserir(novoNumero);
+        novoNumero = 25;
+        instance.inserir(novoNumero);
+        
+        instance.inverter();
+        
+        assertEquals("25,20,15,10,5", instance.toString());
+    }
 }
