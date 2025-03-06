@@ -16,6 +16,9 @@ public class App {
         //alunos.inserir("Pedro"); passou a recusar quando a classe inclui um parametro
         
         System.out.println("Alunos");
+        alunos.toString();
+        
+        System.out.println("Outro teste");
         for( int i = 0; i < alunos.getTamanho(); i++){
             System.out.println(((Aluno)alunos.obterElemento(i)).getNome());
         }

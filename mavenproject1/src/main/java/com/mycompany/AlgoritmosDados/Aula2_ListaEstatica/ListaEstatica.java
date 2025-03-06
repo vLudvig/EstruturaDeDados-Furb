@@ -142,9 +142,9 @@ public class ListaEstatica<AlgumaClasse> { //adicionado parametro para Aceitar O
         String texto = "";
         for(int i = 0; i < tamanho; i++){
             if(i + 1 >= tamanho){
-                texto += info[i];
+                texto += info[i].toString();
             }else{
-               texto += info[i] + ","; 
+               texto += info[i].toString() + ","; 
             }
         }
         return texto;
