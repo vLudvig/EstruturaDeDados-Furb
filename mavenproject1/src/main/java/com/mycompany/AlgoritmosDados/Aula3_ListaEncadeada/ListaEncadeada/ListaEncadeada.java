@@ -70,4 +70,39 @@ public class ListaEncadeada<T> {
         
         return tamanho;
     }
+    
+    public NoLista<T> obterNo(int idx)throws IndexOutOfBoundsException{
+        if(idx < 0 || idx > this.obterComprimento()){
+            throw new IndexOutOfBoundsException();
+        }
+        
+        NoLista<T> p = this.primeiro;
+        int indice = 0;
+        while(p != null){
+           if(idx == indice){
+            return p;
+           }
+           
+           p = p.getProximo();
+           indice++; 
+        }
+        
+        throw new IndexOutOfBoundsException();
+    }
+
+    @Override
+    public String toString() {
+        NoLista<T> p = this.primeiro;
+        String texto = "";
+        while(p != null){
+            if(p.getProximo() == null){
+                texto += p.getInfo();
+            }else{
+                texto += p.getInfo() + ", ";
+            }
+            
+            p = p.getProximo();
+        }
+        return texto;
+    }
 }

@@ -18,7 +18,14 @@ public class APP {
         a.inserir(2.0);
         a.inserir(3.0);
         a.inserir(4.0);
-        a.retirar(3.0);
-        System.out.println("Tamanho " + a.obterComprimento());
+        
+        
+        System.out.println("Lista simplesmente encadeada " + a.toString());
+        System.out.println("TEEEEEEEEEstes");
+        try{
+            System.out.println("Valor da posicao 1: " + a.obterNo(4).getInfo());
+        }catch(IndexOutOfBoundsException i){
+            System.out.println("O Tamanho fornecido eh maior que o comprimento da lista!");
+        }
     }
 }
