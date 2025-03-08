@@ -46,12 +46,28 @@ public class ListaEncadeada<T> {
         NoLista<T> anterior = null;
         NoLista<T> p = this.primeiro;
         
-        while(p.getInfo() != valor && p != null){
+        while(p != null && !p.getInfo().equals(valor)){
             anterior = p;
             p = p.getProximo();
         }
         
+        if(p != null){
+            if(p == this.primeiro){
+                this.primeiro = p.getProximo();
+            }else{
+               anterior.setProximo(p.getProximo()); 
+            }
+        }
+    }
+    
+    public int obterComprimento(){
+        NoLista<T> p = this.primeiro;
+        int tamanho = 0;
+        while(p != null){
+            p = p.getProximo();
+            tamanho++;
+        }
         
-        
+        return tamanho;
     }
 }
