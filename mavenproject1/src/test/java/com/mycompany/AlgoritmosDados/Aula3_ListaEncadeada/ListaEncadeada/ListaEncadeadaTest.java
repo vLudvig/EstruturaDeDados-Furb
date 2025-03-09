@@ -37,101 +37,76 @@ public class ListaEncadeadaTest {
     }
 
     /**
-     * Test of getPrimeiro method, of class ListaEncadeada.
-     */
-    @Test
-    public void testGetPrimeiro() {
-        System.out.println("getPrimeiro");
-        ListaEncadeada instance = new ListaEncadeada();
-        NoLista expResult = null;
-        NoLista result = instance.getPrimeiro();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of inserir method, of class ListaEncadeada.
-     */
-    @Test
-    public void testInserir() {
-        System.out.println("inserir");
-        Object valor = null;
-        ListaEncadeada instance = new ListaEncadeada();
-        instance.inserir(valor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of estaVazia method, of class ListaEncadeada.
      */
     @Test
-    public void testEstaVazia() {
+    public void testEstaVazia1() {
         System.out.println("estaVazia");
         ListaEncadeada instance = new ListaEncadeada();
-        boolean expResult = false;
-        boolean result = instance.estaVazia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(true, instance.estaVazia());
     }
 
-    /**
-     * Test of buscar method, of class ListaEncadeada.
+   /**
+     * Test of estaVazia method, of class ListaEncadeada.
      */
     @Test
-    public void testBuscar() {
-        System.out.println("buscar");
-        Object valor = null;
-        ListaEncadeada instance = new ListaEncadeada();
-        NoLista expResult = null;
-        NoLista result = instance.buscar(valor);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEstaVazia2() {
+        System.out.println("estaVazia");
+        ListaEncadeada<Integer> instance = new ListaEncadeada();
+        instance.inserir(1);
+        assertEquals(false, instance.estaVazia());
+    }
+
+
+    /**
+     * Test of retirar method, of class ListaEncadeada.
+     */
+    @Test
+    public void testInserir1() {
+        System.out.println("inserir");
+        ListaEncadeada<Integer> instance = new ListaEncadeada();
+        instance.inserir(5);
+        
+        assertEquals(5, instance.getPrimeiro().getInfo());
+        assertEquals(null, instance.getPrimeiro().getProximo());
+        assertEquals(1, instance.obterComprimento());
     }
 
     /**
      * Test of retirar method, of class ListaEncadeada.
      */
     @Test
-    public void testRetirar() {
-        System.out.println("retirar");
-        Object valor = null;
-        ListaEncadeada instance = new ListaEncadeada();
-        instance.retirar(valor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testBuscar() {
+        System.out.println("Buscar");
+        ListaEncadeada<Integer> instance = new ListaEncadeada();
+        instance.inserir(5);
+        instance.inserir(10);
+        instance.inserir(15);
+        instance.inserir(20);
+        
+        assertEquals(20, instance.buscar(20).getInfo());
+        assertEquals(15, instance.buscar(15).getInfo());
+        assertEquals(null, instance.buscar(50));
     }
 
     /**
-     * Test of obterComprimento method, of class ListaEncadeada.
+     * Test of retirar method, of class ListaEncadeada.
      */
     @Test
-    public void testObterComprimento() {
-        System.out.println("obterComprimento");
-        ListaEncadeada instance = new ListaEncadeada();
-        int expResult = 0;
-        int result = instance.obterComprimento();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of obterNo method, of class ListaEncadeada.
-     */
-    @Test
-    public void testObterNo() {
-        System.out.println("obterNo");
-        int idx = 0;
-        ListaEncadeada instance = new ListaEncadeada();
-        NoLista expResult = null;
-        NoLista result = instance.obterNo(idx);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testRetir() {
+        System.out.println("Buscar");
+        ListaEncadeada<Integer> instance = new ListaEncadeada();
+        instance.inserir(5);
+        instance.inserir(10);
+        instance.inserir(15);
+        instance.inserir(20);
+        
+        assertEquals(20, instance.buscar(20).getInfo());
+        
+        instance.retirar(20);
+                
+        assertEquals(null, instance.buscar(20));
     }
 
     /**
