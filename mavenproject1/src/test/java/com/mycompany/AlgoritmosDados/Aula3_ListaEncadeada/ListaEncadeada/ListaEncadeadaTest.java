@@ -108,6 +108,21 @@ public class ListaEncadeadaTest {
                 
         assertEquals(null, instance.buscar(20));
     }
+    
+    /**
+     * Test of retirar method, of class ListaEncadeada.
+     */
+    @Test
+    public void testObterNo() {
+        System.out.println("ObterNo");
+        ListaEncadeada<Integer> instance = new ListaEncadeada();
+        instance.inserir(5);
+        instance.inserir(10);
+        instance.inserir(15);
+        instance.inserir(20);
+        
+        assertEquals(20, instance.obterNo(0).getInfo());
+    }
 
     /**
      * Test of toString method, of class ListaEncadeada.

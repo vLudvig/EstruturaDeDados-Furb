@@ -72,22 +72,38 @@ public class ListaEncadeada<T> {
     }
     
     public NoLista<T> obterNo(int idx)throws IndexOutOfBoundsException{
-        if(idx < 0 || idx > this.obterComprimento()){
-            throw new IndexOutOfBoundsException();
-        }
-        
-        NoLista<T> p = this.primeiro;
-        int indice = 0;
-        while(p != null){
-           if(idx == indice){
-            return p;
-           }
-           
-           p = p.getProximo();
-           indice++; 
-        }
-        
-        throw new IndexOutOfBoundsException();
+//        if(idx < 0 || idx > this.obterComprimento()){
+//            throw new IndexOutOfBoundsException();
+//        }
+//        
+//        NoLista<T> p = this.primeiro;
+//        int indice = 0;
+//        while(p != null){
+//           if(idx == indice){
+//            return p;
+//           }
+//           
+//           p = p.getProximo();
+//           indice++; 
+//        }
+//        
+//        throw new IndexOutOfBoundsException();
+
+          if (idx < 0){
+              throw new IndexOutOfBoundsException();
+          }
+          
+          NoLista<T> p = this.primeiro;
+          while(p != null && idx > 0){
+              p = p.getProximo();
+              idx--;
+          }
+          
+          if(p == null){
+              throw new IndexOutOfBoundsException();
+          }
+          
+          return p;
     }
 
     @Override
@@ -96,13 +112,34 @@ public class ListaEncadeada<T> {
         String texto = "";
         while(p != null){
             if(p.getProximo() == null){
-                texto += p.getInfo();
+                texto += p.getInfo().toString();
             }else{
-                texto += p.getInfo() + ", ";
+                texto += p.getInfo().toString() + ", ";
             }
             
             p = p.getProximo();
         }
         return texto;
+    }
+    
+    public void exibir(){
+        NoLista<T> p = this.primeiro;
+        
+        while(p != null){
+            System.out.println(p.getInfo());
+            p = p.getProximo();
+        }
+    }
+    
+    public ListaEncadeada<T> criarinvertida(){
+        ListaEncadeada<T> temp = new ListaEncadeada<>();
+        NoLista<T> p = this.primeiro;
+        
+        while(p != null){
+           temp.inserir(p.getInfo());
+           p = p.getProximo();
+        }
+        
+        return temp;
     }
 }

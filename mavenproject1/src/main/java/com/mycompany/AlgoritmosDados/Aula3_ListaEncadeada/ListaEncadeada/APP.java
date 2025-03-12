@@ -21,11 +21,13 @@ public class APP {
         
         
         System.out.println("Lista simplesmente encadeada " + a.toString());
-        System.out.println("TEEEEEEEEEstes");
-        try{
-            System.out.println("Valor da posicao 1: " + a.obterNo(4).getInfo());
-        }catch(IndexOutOfBoundsException i){
-            System.out.println("O Tamanho fornecido eh maior que o comprimento da lista!");
-        }
+        
+        System.out.println("Invertida: \n" + a.criarinvertida().toString());
+        //System.out.println("TEEEEEEEEEstes");
+        //try{
+        //    System.out.println("Valor da posicao 1: " + a.obterNo(4).getInfo());
+        //}catch(IndexOutOfBoundsException i){
+        //    System.out.println("O Tamanho fornecido eh maior que o comprimento da lista!");
+        //}
     }
 }
