@@ -32,4 +32,25 @@ public class ListaDupla<T> {
         this.primeiro = p;
     }
     
+    public NoListaDupla<T> buscar(T valor){
+        NoListaDupla<T> p = new NoListaDupla<>();
+        p = this.primeiro;
+        while(p != null && !p.getInfo().equals(valor)){
+            p = p.getProximo();
+        }
+        
+        if(p != null){
+            return p;
+        }
+        
+        return null;
+    }
+    
+    public void retirar(){
+        
+    }
+    
+    public void exibirOrdemInversa(){
+        
+    }
 }
