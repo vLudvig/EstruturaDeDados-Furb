@@ -4,15 +4,19 @@
  */
 package com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaDuplamenteEncadeada;
 
+import com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada.ListaEncadeada;
+
 /**
  *
  * @author vludvig
  */
 public class ListaDupla<T> {
     private NoListaDupla<T> primeiro;
+    private int tamanho;
 
     public ListaDupla() {
         this.primeiro = null;
+        this.tamanho = 0;
     }
     
     public NoListaDupla<T> getPrimeiro(){
@@ -30,6 +34,7 @@ public class ListaDupla<T> {
         }
         
         this.primeiro = p;
+        this.tamanho++;
     }
     
     public NoListaDupla<T> buscar(T valor){
@@ -46,11 +51,44 @@ public class ListaDupla<T> {
         return null;
     }
     
-    public void retirar(){
+    public void retirar(T valor){
+        NoListaDupla<T> p = this.buscar(valor);
         
+        if(p != null){
+            if(p == this.primeiro){//valida se esta na primeira posicao
+                this.primeiro = p.getProximo();
+            }else{
+                p.getAnterior().setProximo(p.getProximo());
+            }
+            if(p.getProximo() != null){//valida se não esta na ultima posicao
+                p.getProximo().setAnterior(p.getAnterior());
+            }
+            tamanho--;
+        }  
     }
     
     public void exibirOrdemInversa(){
         
+    }
+    
+    public void liberar(){
+        
+    }
+    
+    @Override
+    public String toString(){
+        String texto = "";
+        NoListaDupla<T> p = this.primeiro;
+        
+        for(int i = 0; i < this.tamanho; i++){
+            if(i != this.tamanho - 1){
+                texto += p.getInfo() + ", ";
+            }else{
+                texto += p.getInfo();
+            }
+            
+            p = p.getProximo();
+        } 
+        return texto;
     }
 }

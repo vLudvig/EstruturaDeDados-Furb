@@ -12,12 +12,15 @@ public class App {
     public static void main(String[] args) {
         ListaDupla<Integer> lista = new ListaDupla<>();
         
+        lista.inserir(1);
         lista.inserir(2);
         lista.inserir(3);
         lista.inserir(4);
         lista.inserir(5);
-        lista.inserir(6);
         
-        System.out.println("Valor do objeto eh " + lista.buscar(3).getInfo());
+        System.out.println("Valor " + lista.buscar(3).getInfo());
+        
+        //lista.retirar(1);
+        System.out.println("Lista Duplamente encadeada " + lista.toString());
     }
 }
