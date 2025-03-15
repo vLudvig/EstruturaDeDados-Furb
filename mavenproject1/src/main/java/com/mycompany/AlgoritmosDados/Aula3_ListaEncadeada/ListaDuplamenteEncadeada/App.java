@@ -22,5 +22,12 @@ public class App {
         
         //lista.retirar(1);
         System.out.println("Lista Duplamente encadeada " + lista.toString());
+        
+        lista.exibirOrdemInversa();
+        
+        lista.liberar();
+        
+        System.out.println("Valor da busca 1 " + lista.buscar(1).getInfo());
+        System.out.println("Valor da busca 5 " + lista.buscar(5));
     }
 }

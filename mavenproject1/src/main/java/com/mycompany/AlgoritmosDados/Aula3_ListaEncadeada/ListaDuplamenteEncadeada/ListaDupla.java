@@ -68,11 +68,25 @@ public class ListaDupla<T> {
     }
     
     public void exibirOrdemInversa(){
+        ListaDupla<T> lista = new ListaDupla<>();
+        NoListaDupla<T> p = this.primeiro;
         
+        while(p != null){
+          lista.inserir(p.getInfo());
+          p = p.getProximo();
+        }
+        
+        System.out.println("Inversa: " + lista.toString());
     }
     
     public void liberar(){
-        
+        NoListaDupla<T> p = this.primeiro;
+
+        while(p.getProximo() != null){
+            p = p.getProximo();
+            
+            System.out.println("liberou");
+        }
     }
     
     @Override
