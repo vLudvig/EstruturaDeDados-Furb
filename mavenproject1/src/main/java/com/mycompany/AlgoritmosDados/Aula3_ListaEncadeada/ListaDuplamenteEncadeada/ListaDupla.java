@@ -82,11 +82,14 @@ public class ListaDupla<T> {
     public void liberar(){
         NoListaDupla<T> p = this.primeiro;
 
-        while(p.getProximo() != null){
-            p = p.getProximo();
-            
-            System.out.println("liberou");
+        while(p != null){
+            NoListaDupla<T> temp = p.getProximo();
+            p.setAnterior(null);
+            p.setProximo(null);
+            p = temp;
         }
+        
+        this.primeiro = null;
     }
     
     @Override
