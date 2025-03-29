@@ -12,7 +12,7 @@ public class PilhaVetor<T> implements Pilha<T>{
     private int limite;
     private int tamanho;
     private Object info[];
-
+    
     public PilhaVetor(int limite) {
         info = new Object[limite];
         this.limite = limite;

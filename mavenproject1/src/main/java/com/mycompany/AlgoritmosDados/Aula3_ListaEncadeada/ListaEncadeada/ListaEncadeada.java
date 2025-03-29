@@ -105,6 +105,10 @@ public class ListaEncadeada<T> {
           
           return p;
     }
+    
+    public void liberar(){
+        this.primeiro = null;
+    }
 
     @Override
     public String toString() {
