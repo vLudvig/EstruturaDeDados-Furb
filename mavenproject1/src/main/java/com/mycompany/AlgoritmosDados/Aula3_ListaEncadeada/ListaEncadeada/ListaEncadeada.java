@@ -10,6 +10,7 @@ package com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada;
  */
 public class ListaEncadeada<T> {
     private NoLista<T> primeiro;
+    private NoLista<T> ultimo;
        
     public ListaEncadeada(){
         this.primeiro = null;
@@ -19,6 +20,20 @@ public class ListaEncadeada<T> {
         return primeiro;
     }
 
+    public void inserirNoFinal(T valor){
+        NoLista novo = new NoLista<T>();
+        novo.setInfo(valor);
+        novo.setProximo(null);
+        
+        if(estaVazia()){
+            this.primeiro = novo;
+        }else{
+            this.ultimo.setProximo(novo);
+        }
+        
+        this.ultimo = novo;
+    }
+    
     public void inserir(T valor){
         NoLista novo = new NoLista<T>();
         novo.setInfo(valor);

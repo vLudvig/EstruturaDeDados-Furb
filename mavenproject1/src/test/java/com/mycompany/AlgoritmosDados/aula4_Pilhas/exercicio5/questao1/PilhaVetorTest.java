@@ -147,12 +147,12 @@ public class PilhaVetorTest {
     @Test
      public void testConcatenar() {
         System.out.println("concatenar");
-        PilhaVetor<Integer> instance = new PilhaVetor(20);
+        PilhaVetor<Integer> instance = new PilhaVetor(5);
         instance.push(10);
         instance.push(20);
         instance.push(30);
         
-        PilhaVetor<Integer> instance2 = new PilhaVetor(10);
+        PilhaVetor<Integer> instance2 = new PilhaVetor(5);
         instance2.push(40);
         instance2.push(50);
         instance.concatenar(instance2);

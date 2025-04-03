@@ -61,6 +61,10 @@ public class PilhaVetor<T> implements Pilha<T>{
             info[i] = null;
         }
         this.tamanho = 0;
+        
+        // ou 
+        //info = new Object[this.limite];
+        //this.tamanho = 0;
     }
     
     @Override
@@ -81,9 +85,9 @@ public class PilhaVetor<T> implements Pilha<T>{
         return texto;
     }
     
-    public void concatenar(PilhaVetor<T> p) throws IndexOutOfBoundsException{
+    public void concatenar(PilhaVetor<T> p) throws PilhaCheiaException{
         if(p.tamanho + this.tamanho > this.limite){
-            throw new IndexOutOfBoundsException();
+            throw new PilhaCheiaException();
         }
         
         for(int i = 0; i < p.tamanho; i++){
