@@ -8,6 +8,6 @@ package com.mycompany.AlgoritmosDados.aula5_Filas.exercicio06.questao01;
  *
  * @author vludvig
  */
-public class FilaVaziaException {
+public class FilaVaziaException extends RuntimeException {
     
 }
