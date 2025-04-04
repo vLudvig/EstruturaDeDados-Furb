@@ -69,9 +69,35 @@ public class FilaVetor<T> implements Fila<T> {
     }
     
     public FilaVetor<T> criarFilaConcatenada(FilaVetor<T> f2){
-        f2 = this;
+       FilaVetor novaFila = new FilaVetor(this.limite + f2.limite); 
+       int posicaoF1 = this.inicio;
+       int posicaoF2 = f2.inicio;
+       
+       for(int i = 0; i < this.tamanho + f2.tamanho; i++){
+           int controlaPosicao = 1;
+           
+           if(i <= this.tamanho){
+               novaFila.info[i] = this.info[posicaoF1];
+               posicaoF1 = (this.inicio + controlaPosicao) % this.limite;
+               controlaPosicao++;
+           }
+           
+           if (controlaPosicao == this.tamanho){
+               controlaPosicao = 1;
+           }
+           
+           if(i > this.tamanho){
+               novaFila.info[i] = this.info[posicaoF2];
+               posicaoF2 = (f2.inicio + controlaPosicao) % f2.limite;
+               controlaPosicao++;
+           }
+       }
         
-        return f2;
+        return novaFila;
+    }
+    
+    public int getLimite(){
+        return this.limite;
     }
     
     

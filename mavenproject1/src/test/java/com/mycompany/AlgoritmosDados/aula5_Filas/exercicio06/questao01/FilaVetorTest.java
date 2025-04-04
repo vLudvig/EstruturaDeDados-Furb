@@ -42,11 +42,20 @@ public class FilaVetorTest {
     @Test
     public void testInserir() {
         System.out.println("inserir");
-        Object valor = null;
-        FilaVetor instance = null;
-        instance.inserir(valor);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaVetor<Integer> instance = new FilaVetor(10);
+        Integer expResult = 10;
+        instance.inserir(10);
+        instance.inserir(20);
+        instance.inserir(30);
+        Integer result = instance.retirar();
+        assertEquals(expResult, result);
+        expResult = 20;
+        result = instance.retirar();
+        assertEquals(expResult, result);
+        expResult = 30;
+        result = instance.retirar();
+        assertEquals(expResult, result);
+        assertEquals(true, instance.estaVazia() );
     }
 
     /**
@@ -55,12 +64,39 @@ public class FilaVetorTest {
     @Test
     public void testEstaVazia() {
         System.out.println("estaVazia");
-        FilaVetor instance = null;
+        FilaVetor<Integer> instance = new FilaVetor(10);
         boolean expResult = false;
+        instance.inserir(1);
         boolean result = instance.estaVazia();
+        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+    }
+    
+    /**
+     * Test of FilaCheiaException class.
+     */
+    @Test
+    public void testCheiaException() throws FilaCheiaException {
+        System.out.println("estaVazia");
+        FilaVetor<Integer> instance = new FilaVetor(3);
+        
+        instance.inserir(10);
+        instance.inserir(20);
+        instance.inserir(30);
+        
+        assertThrows(FilaCheiaException.class, () -> instance.inserir(40));
+    }
+    
+    /**
+     * Test of FilaVaziaException class.
+     */
+    @Test
+    public void testVaziaException() throws FilaCheiaException {
+        System.out.println("estaVazia");
+        FilaVetor<Integer> instance = new FilaVetor(3);
+        
+        assertThrows(FilaVaziaException.class, () -> instance.retirar());
     }
 
     /**
@@ -69,12 +105,13 @@ public class FilaVetorTest {
     @Test
     public void testPeek() {
         System.out.println("peek");
-        FilaVetor instance = null;
-        Object expResult = null;
-        Object result = instance.peek();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        FilaVetor<Integer> instance = new FilaVetor(5);
+        
+        instance.inserir(10);
+        instance.inserir(20);
+        instance.inserir(30);
+        assertEquals(10, instance.peek());
+        assertEquals(10, instance.retirar());
     }
 
     /**
@@ -97,10 +134,36 @@ public class FilaVetorTest {
     @Test
     public void testLiberar() {
         System.out.println("liberar");
-        FilaVetor instance = null;
+        FilaVetor<Integer> instance = new FilaVetor(5);
+        
+        instance.inserir(10);
+        instance.inserir(20);
+        instance.inserir(30);
         instance.liberar();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertEquals(true, instance.estaVazia());
     }
     
+    /**
+     * Test of criarFilaConcatenada method, of class FilaVetor.
+     */
+    @Test
+    public void testCriarFilaConcatenada() {
+        System.out.println("liberar");
+        FilaVetor<Integer> instance = new FilaVetor(5);
+        FilaVetor<Integer> instance2 = new FilaVetor(10);
+        
+        instance.inserir(10);
+        instance2.inserir(20);
+        instance2.inserir(30);
+        instance2.inserir(40);
+        instance.retirar();
+        instance.inserir(10);
+        instance.inserir(20);
+        instance.retirar();
+        instance.inserir(10);
+        instance2.retirar();
+        
+        assertEquals(true, instance.estaVazia());
+    }
 }
