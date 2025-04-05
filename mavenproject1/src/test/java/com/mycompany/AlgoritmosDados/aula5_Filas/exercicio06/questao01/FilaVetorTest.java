@@ -134,11 +134,22 @@ public class FilaVetorTest {
     @Test
     public void testLiberar() {
         System.out.println("liberar");
-        FilaVetor<Integer> instance = new FilaVetor(5);
+        FilaVetor<Integer> instance = new FilaVetor(30);
         
         instance.inserir(10);
         instance.inserir(20);
         instance.inserir(30);
+        instance.inserir(40);
+        instance.inserir(50);
+        instance.inserir(60);
+        instance.retirar();
+        instance.retirar();
+        instance.inserir(70);
+        instance.inserir(80);
+        instance.inserir(90);
+        instance.inserir(120);
+        instance.inserir(390);
+        System.out.println("Saida: " + instance.toString());
         instance.liberar();
         
         assertEquals(true, instance.estaVazia());
@@ -149,21 +160,18 @@ public class FilaVetorTest {
      */
     @Test
     public void testCriarFilaConcatenada() {
-        System.out.println("liberar");
+        System.out.println("Criar Fila Concatenada");
         FilaVetor<Integer> instance = new FilaVetor(5);
         FilaVetor<Integer> instance2 = new FilaVetor(10);
         
         instance.inserir(10);
-        instance2.inserir(20);
-        instance2.inserir(30);
         instance2.inserir(40);
-        instance.retirar();
-        instance.inserir(10);
+        instance2.inserir(50);
         instance.inserir(20);
-        instance.retirar();
-        instance.inserir(10);
-        instance2.retirar();
+        instance.inserir(30);
         
-        assertEquals(true, instance.estaVazia());
+        FilaVetor<Integer> novaFila = instance.criarFilaConcatenada(instance2);
+        
+        assertEquals("10,20,30,40,50", novaFila.toString());
     }
 }

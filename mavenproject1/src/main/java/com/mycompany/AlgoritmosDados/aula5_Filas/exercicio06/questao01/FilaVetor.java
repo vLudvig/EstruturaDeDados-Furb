@@ -60,8 +60,15 @@ public class FilaVetor<T> implements Fila<T> {
 
     @Override
     public void liberar() {
-        for(int i = 0; i < this.info.length; i++){
-            info[i] = null;
+        int posicao = this.inicio;
+        for(int i = 0; i < this.tamanho; i++){
+            if(posicao + this.tamanho > this.limite){
+                posicao = (posicao + this.tamanho) % this.limite;
+            }else{
+                posicao++;
+            }
+            
+            info[posicao] = null;
         }
         
         this.tamanho = 0;
@@ -74,31 +81,51 @@ public class FilaVetor<T> implements Fila<T> {
        int posicaoF2 = f2.inicio;
        
        for(int i = 0; i < this.tamanho + f2.tamanho; i++){
-           int controlaPosicao = 1;
+           if(i < this.tamanho){
+               novaFila.inserir(this.info[posicaoF1]);
+               if(posicaoF1 + this.tamanho > this.limite){
+                   posicaoF1 = (this.inicio + this.tamanho) % this.limite;
+               }else{
+                   posicaoF1++;
+               }
+           }         
            
-           if(i <= this.tamanho){
-               novaFila.info[i] = this.info[posicaoF1];
-               posicaoF1 = (this.inicio + controlaPosicao) % this.limite;
-               controlaPosicao++;
-           }
-           
-           if (controlaPosicao == this.tamanho){
-               controlaPosicao = 1;
-           }
-           
-           if(i > this.tamanho){
-               novaFila.info[i] = this.info[posicaoF2];
-               posicaoF2 = (f2.inicio + controlaPosicao) % f2.limite;
-               controlaPosicao++;
+           if(i >= this.tamanho){
+               novaFila.inserir(f2.info[posicaoF2]);
+               if(posicaoF2 + f2.tamanho > f2.limite){
+                   posicaoF2 = (f2.inicio + f2.tamanho) % f2.limite;
+               }else{
+                   posicaoF2++;
+               }
            }
        }
         
         return novaFila;
     }
     
+    @Override
+    public String toString(){
+        String texto = "";
+        int posicao = this.inicio;
+        
+        for(int i = 0; i < this.tamanho; i++){
+            if(i != this.tamanho - 1){
+                texto += info[posicao] + ",";
+                if(posicao + this.tamanho > this.limite){
+                    posicao = (posicao + this.tamanho) % this.limite;
+                }else{
+                    posicao++;
+                }
+                
+            }else{
+                texto += info[posicao].toString();
+            }
+        }
+         
+        return texto;
+    }
+    
     public int getLimite(){
         return this.limite;
     }
-    
-    
 }

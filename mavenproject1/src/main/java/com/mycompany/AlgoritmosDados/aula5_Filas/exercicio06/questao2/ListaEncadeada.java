@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada;
+package com.mycompany.AlgoritmosDados.aula5_Filas.exercicio06.questao2;
 
 /**
  *
@@ -10,6 +10,7 @@ package com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada;
  */
 public class ListaEncadeada<T> {
     private NoLista<T> primeiro;
+    private NoLista<T> ultimo;
        
     public ListaEncadeada(){
         this.primeiro = null;
@@ -19,6 +20,20 @@ public class ListaEncadeada<T> {
         return primeiro;
     }
 
+    public void inserirNoFinal(T valor){
+        NoLista novo = new NoLista<T>();
+        novo.setInfo(valor);
+        novo.setProximo(null);
+        
+        if(estaVazia()){
+            this.primeiro = novo;
+        }else{
+            this.ultimo.setProximo(novo);
+        }
+        
+        this.ultimo = novo;
+    }
+    
     public void inserir(T valor){
         NoLista novo = new NoLista<T>();
         novo.setInfo(valor);
@@ -118,7 +133,7 @@ public class ListaEncadeada<T> {
             if(p.getProximo() == null){
                 texto += p.getInfo().toString();
             }else{
-                texto += p.getInfo().toString() + ", ";
+                texto += p.getInfo().toString() + ",";
             }
             
             p = p.getProximo();
