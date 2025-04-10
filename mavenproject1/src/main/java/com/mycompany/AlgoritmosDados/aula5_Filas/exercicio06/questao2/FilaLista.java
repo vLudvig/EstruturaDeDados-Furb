@@ -11,42 +11,42 @@ import com.mycompany.AlgoritmosDados.aula5_Filas.exercicio06.questao01.Fila;
  * @author User
  */
 public class FilaLista<T> implements Fila<T> {
-    private ListaEncadeada<T> info;
+    private ListaEncadeada<T> lista;
     
     public FilaLista() {
-        this.info = new ListaEncadeada();
+        this.lista = new ListaEncadeada();
     }
     
     @Override
     public void inserir(T valor){
-        info.inserirNoFinal(valor);
+        lista.inserirNoFinal(valor);
     }
     
     @Override
     public boolean estaVazia(){
-        return info.estaVazia();
+        return lista.estaVazia();
     }
     
     @Override
     public T peek(){
-        return info.getPrimeiro().getInfo();
+        return lista.getPrimeiro().getInfo();
     }
     
     @Override
     public T retirar(){
         T valor = this.peek();
-        info.retirar(valor);
+        lista.retirar(valor);
         
         return valor;
     }
     
     @Override
     public void liberar(){
-        info.liberar();
+        lista.liberar();
     }
     
     @Override
     public String toString(){
-        return info.toString();
+        return lista.toString();
     }
 }

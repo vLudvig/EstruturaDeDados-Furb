@@ -48,12 +48,9 @@ public class FilaVetor<T> implements Fila<T> {
     public T retirar() {
         T valor = this.peek();
         this.info[this.inicio] = null;
-        this.inicio++;
-        this.tamanho--;
         
-        if(this.inicio == this.limite){
-            this.inicio = 0;
-        }
+        this.inicio = (inicio + 1) % limite;
+        this.tamanho--;
         
         return valor;
     }
@@ -62,12 +59,7 @@ public class FilaVetor<T> implements Fila<T> {
     public void liberar() {
         int posicao = this.inicio;
         for(int i = 0; i < this.tamanho; i++){
-            if(posicao + this.tamanho > this.limite){
-                posicao = (posicao + this.tamanho) % this.limite;
-            }else{
-                posicao++;
-            }
-            
+            posicao = (posicao + i) % this.limite;
             info[posicao] = null;
         }
         
@@ -75,7 +67,7 @@ public class FilaVetor<T> implements Fila<T> {
         this.inicio = 0;
     }
     
-    public FilaVetor<T> criarFilaConcatenada(FilaVetor<T> f2){
+    public FilaVetor<T> criarFilaConcatenadaByVitor(FilaVetor<T> f2){
        FilaVetor novaFila = new FilaVetor(this.limite + f2.limite); 
        int posicaoF1 = this.inicio;
        int posicaoF2 = f2.inicio;
@@ -103,6 +95,24 @@ public class FilaVetor<T> implements Fila<T> {
         return novaFila;
     }
     
+    public FilaVetor<T> criarFilaConcatenada(FilaVetor<T> f2){
+       FilaVetor novaFila = new FilaVetor(this.limite + f2.limite); 
+       
+       int posicao = this.inicio;
+       for(int i =0; i < this.tamanho; i++){
+           novaFila.inserir((T)this.info[posicao]);
+           posicao = (posicao + 1) % limite;
+       }
+       
+       posicao = f2.inicio;
+       for(int i=0; i < f2.tamanho; i++){
+           novaFila.inserir((T)f2.info[posicao]);
+           posicao = (posicao + 1) % f2.limite;
+       }
+        
+       return novaFila;
+    }
+    
     @Override
     public String toString(){
         String texto = "";
@@ -111,11 +121,7 @@ public class FilaVetor<T> implements Fila<T> {
         for(int i = 0; i < this.tamanho; i++){
             if(i != this.tamanho - 1){
                 texto += info[posicao] + ",";
-                if(posicao + this.tamanho > this.limite){
-                    posicao = (posicao + this.tamanho) % this.limite;
-                }else{
-                    posicao++;
-                }
+                posicao = (posicao + 1) % this.limite;
                 
             }else{
                 texto += info[posicao].toString();

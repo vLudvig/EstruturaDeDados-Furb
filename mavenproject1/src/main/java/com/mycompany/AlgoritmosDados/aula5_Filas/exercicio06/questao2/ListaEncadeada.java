@@ -72,6 +72,10 @@ public class ListaEncadeada<T> {
             }else{
                anterior.setProximo(p.getProximo()); 
             }
+            
+            if(p == this.ultimo){
+                this.ultimo = anterior;
+            }
         }
     }
     
