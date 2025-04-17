@@ -18,6 +18,10 @@ public class ArvoreBinaria<T> {
     public void setRaiz(NoArvoreBinaria<T> raiz) {
         this.raiz = raiz;
     }
+
+    public NoArvoreBinaria<T> getRaiz() {
+        return raiz;
+    }
     
     public boolean estaVazia(){
         return raiz == null;
@@ -31,7 +35,9 @@ public class ArvoreBinaria<T> {
         if(no == null){
            return false; 
         }else{
-            return no.getInfo() == info ||  pertence(no.getEsquerda(), info)|| pertence(no.getDireita(), info);
+            return no.getInfo() == info 
+                   || pertence(no.getEsquerda(), info)
+                   || pertence(no.getDireita(), info);
         }
     }
     
