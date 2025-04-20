@@ -18,7 +18,7 @@ public class NoArvore<T> {
     }
     
     public void inserirFilho(NoArvore<T> sa){
-        this.proximo = this.primeiro;
+        sa.proximo = this.primeiro;
         this.primeiro = sa;
     }
 
