@@ -50,12 +50,12 @@ public class Arvore<T> {
     }
     
     private boolean pertence(NoArvore<T> no, T info){
-        if(no.getInfo() == info){
+        if(no.getInfo().equals(info)){
             return true;
         }
         var p = no.getPrimeiro();
         while(p != null){
-            if(p.getInfo() == info){
+            if(pertence(p, info)){
                 return true;
             }else{
                 p = p.getProximo();
