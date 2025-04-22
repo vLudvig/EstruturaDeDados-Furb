@@ -25,6 +25,13 @@ public class NoArvoreBinaria<T> {
         this.info = info;
     }
     
+    //Necessario para metodo fromString da arvoreBinaria
+    public NoArvoreBinaria() {
+        this.info = null;
+        this.esquerda = null;
+        this.direita = null;
+    }
+    
     public void setInfo(T info){
         this.info = info;
     }
