@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package com.mycompany.AlgoritmosDados.aula6_Arvores.exercicio08.questao01;
+package com.mycompany.AlgoritmosDados.prova2.VitorLuizMouiLudvig.questao3;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author User
+ * @author vludvig
  */
 public class ArvoreTest {
     
@@ -34,6 +34,22 @@ public class ArvoreTest {
        arvore.setRaiz(no4);
        
        return arvore;
+    }
+    
+    @BeforeAll
+    public static void setUpClass() {
+    }
+    
+    @AfterAll
+    public static void tearDownClass() {
+    }
+    
+    @BeforeEach
+    public void setUp() {
+    }
+    
+    @AfterEach
+    public void tearDown() {
     }
 
     /**
@@ -67,18 +83,16 @@ public class ArvoreTest {
      * Test of toString method, of class Arvore.
      */
     @Test
-    public void testPrincipal() {
+    public void testToString() {
         System.out.println("toString");
-        Arvore instance = this.createArvoreDefault();
-        String expResult = "<10<40<90>><20>>";
+        Arvore instance = new Arvore();
+        String expResult = "";
         String result = instance.toString();
-        System.out.println("Resultado textual: " + result);
         assertEquals(expResult, result);
-        assertEquals(true, instance.pertence(20));
-        assertEquals(false, instance.pertence(1000));
-        assertEquals(4, instance.contarNos());
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of obterRepresentacaoTextual method, of class Arvore.
      */
@@ -89,13 +103,15 @@ public class ArvoreTest {
         String expResult = "";
         String result = instance.obterRepresentacaoTextual(null);
         assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of pertence method, of class Arvore.
      */
     @Test
-    public void testPertence_GenericType() {
+    public void testPertence() {
         System.out.println("pertence");
         Object info = null;
         Arvore instance = new Arvore();
@@ -107,31 +123,30 @@ public class ArvoreTest {
     }
 
     /**
-     * Test of pertence method, of class Arvore.
-     */
-    @Test
-    public void testPertence_NoArvore_GenericType() {
-        System.out.println("pertence");
-        Arvore instance = new Arvore();
-        boolean expResult = false;
-        boolean result = instance.pertence(null);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of contaNos method, of class Arvore.
+     * Test of contarNos method, of class Arvore.
      */
     @Test
     public void testContarNos() {
-        System.out.println("contaNos");
+        System.out.println("contarNos");
         Arvore instance = new Arvore();
         int expResult = 0;
         int result = instance.contarNos();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of contarNosInternos method, of class Arvore.
+     */
+    @Test
+    public void testContarNosInternos() {
+        System.out.println("contarNosInternos");
+        Arvore instance = this.createArvoreDefault();
+        int expResult = 3;
+        int result = instance.contarNosInternos();
+        assertEquals(expResult, result);
+        
     }
     
 }
