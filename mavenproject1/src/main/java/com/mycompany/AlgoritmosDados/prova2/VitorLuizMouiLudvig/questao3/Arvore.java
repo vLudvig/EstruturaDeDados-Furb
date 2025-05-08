@@ -87,7 +87,7 @@ public class Arvore<T> {
         if(this.raiz == null){
             return 0;
         }
-        return contarNos(this.raiz);
+        return contarNosInternos(this.raiz);
     }
     
     private int contarNosInternos(NoArvore<T> sa){
