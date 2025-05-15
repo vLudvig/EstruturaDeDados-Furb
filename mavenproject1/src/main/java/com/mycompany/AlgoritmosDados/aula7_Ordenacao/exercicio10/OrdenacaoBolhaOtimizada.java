@@ -12,7 +12,12 @@ public class OrdenacaoBolhaOtimizada<T extends Comparable<T>> extends OrdenacaoA
     
     @Override
     public void ordenar(){
-        T[] vetor = this.getInfo();
+        /**
+         * variavel local que referencia a mesma variavel da superClasse 
+         * (ao alterar "vetor", info da super classe tbm altera)
+        */
+        T[] vetor = this.getInfo(); 
+        
         boolean trocou;
         
         for(int i = vetor.length - 1; i >= 1; i--){
@@ -27,5 +32,14 @@ public class OrdenacaoBolhaOtimizada<T extends Comparable<T>> extends OrdenacaoA
                 return;
             }
         }
+    }
+    
+    @Override
+    public String toString(){
+        String texto = "";
+        for(int i = 0; i < this.getInfo().length; i++){
+            texto += this.getInfo()[i] + ", ";
+        }
+        return texto;
     }
 }

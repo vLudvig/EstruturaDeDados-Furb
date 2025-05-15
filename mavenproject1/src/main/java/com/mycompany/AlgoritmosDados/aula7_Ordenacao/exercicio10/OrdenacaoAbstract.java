@@ -25,5 +25,8 @@ public abstract class OrdenacaoAbstract<T extends Comparable<T>> {
         info[b] = temp;
     }
     
+    /**
+     * Ordena o atributo vetor info
+     */
     public abstract void ordenar();
 }

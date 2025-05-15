@@ -9,10 +9,10 @@ package com.mycompany.AlgoritmosDados.aula7_Ordenacao.exercicio10;
  * @author User
  */
 public class OrdenacaoQuickSort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
+    
     @Override
     public void ordenar(){
-        int n = this.getInfo().length;
-        quickSort(0, n);
+        quickSort(0, getInfo().length);
     }
     
     private void quickSort(int inicio, int fim){
@@ -24,24 +24,28 @@ public class OrdenacaoQuickSort<T extends Comparable<T>> extends OrdenacaoAbstra
     }
     
     private int particionar(int inicio, int fim){
+        T[] info = getInfo();
+        T pivo = info[inicio];
         int a = inicio;
         int b = fim + 1;
-        T pivo = (T) this.getInfo()[inicio];
         
         while(true){
-            a = a + 1;
-            while(a <= fim && this.getInfo()[a].compareTo(pivo) > 0){
-                b = b - 1;
-                while(b >= inicio && this.getInfo()[b].compareTo(pivo) > 0 ){
-                    if(a >= b){
-                        break;
-                    }
-                }
+            do {
+                a++;
+            }while(a <= fim && info[a].compareTo(pivo) > 0);//ino[a] < pivo
+            do {
+                b--;
+            }while(b >= inicio && info[b].compareTo(pivo) > 0 );
                 
-                trocar(a, b);
+            if(a >= b){
+                break;
             }
-          trocar(b, inicio);  
-          return b;
+                
+            trocar(a, b);
         }
+        
+        trocar(b, inicio);  
+        return b;
     }
 }
+
