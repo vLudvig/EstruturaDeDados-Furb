@@ -5,7 +5,7 @@
 package com.mycompany.AlgoritmosDados.aula8_MapaDispersao;
 
 import com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada.ListaEncadeada;
-import com.mycompany.AlgoritmosDados.aula5_Filas.exercicio06.questao2.NoLista;
+import com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada.NoLista;
 
 /**
  *
@@ -48,7 +48,25 @@ public class MapaDispersao<T> {
         if(this.info[indice] != null){
             NoMapa no = new NoMapa();
             no.setChave(chave);
+            NoLista<T> noLista = info[indice].buscar((T) no);
             
+            if(noLista != null){
+                NoMapa encontrado = (NoMapa)noLista.getInfo();
+                return (T)encontrado.getValor();
+            }
         }
+        return null;
+    }
+    
+    public double calcularFatorCarga(){
+        int numElementos = 0;
+        
+        for(int i = 0; i < info.length; i++){
+            if(info[i] != null){
+                numElementos += info[i].obterComprimento();
+            }
+        }
+        
+        return (double) numElementos / info.length;
     }
 }
