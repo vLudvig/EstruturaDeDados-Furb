@@ -4,6 +4,8 @@
  */
 package com.mycompany.AlgoritmosDados.aula8_MapaDispersao;
 
+import com.mycompany.AlgoritmosDados.aula8_MapaDispersao.exercicio9.MapaDispersao;
+import com.mycompany.AlgoritmosDados.aula8_MapaDispersao.exercicio9.Aluno;
 import java.time.LocalDate;
 import java.time.Month;
 import org.junit.jupiter.api.AfterEach;
