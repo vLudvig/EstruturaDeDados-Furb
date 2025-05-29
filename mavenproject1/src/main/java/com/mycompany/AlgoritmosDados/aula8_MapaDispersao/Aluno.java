@@ -15,6 +15,10 @@ public class Aluno {
     private String nome;
     private LocalDate dataNascimento;
     
+    public Aluno(){
+    
+    }
+    
     public Aluno(int matricula, String nome, LocalDate dataNasc){
         this.matricula = matricula;
         this.nome = nome;
