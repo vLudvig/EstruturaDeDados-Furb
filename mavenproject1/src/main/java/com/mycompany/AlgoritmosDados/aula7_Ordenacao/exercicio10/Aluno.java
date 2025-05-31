@@ -30,7 +30,6 @@ public class Aluno implements Comparable<Aluno>{
     
     @Override
     public int compareTo(Aluno o){
-        
         int comparacao = this.getNome().compareTo(o.getNome());
         
         if (comparacao != 0){
