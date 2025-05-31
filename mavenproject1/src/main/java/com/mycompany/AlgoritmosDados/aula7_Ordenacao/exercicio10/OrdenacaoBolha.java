@@ -9,7 +9,6 @@ package com.mycompany.AlgoritmosDados.aula7_Ordenacao.exercicio10;
  * @author User
  */
 public class OrdenacaoBolha<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
-    
     //@Override
     public void ordenarByVitor(){
         T[] vetor = this.getInfo();

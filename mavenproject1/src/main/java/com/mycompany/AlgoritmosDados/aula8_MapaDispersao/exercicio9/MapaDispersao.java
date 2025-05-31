@@ -12,74 +12,7 @@ import com.mycompany.AlgoritmosDados.Aula3_ListaEncadeada.ListaEncadeada.NoLista
  * @author vludvig
  */
 public class MapaDispersao<T> {
-    private ListaEncadeada<NoMapa<T>>[] info;
-
-    public MapaDispersao(int tamanho) {
-        // this.info = (ListaEncadeada<NoMapa<T>>[]) new ListaEncadeada[tamanho];
-        this.info = new ListaEncadeada[tamanho];
-    }
-
-    public void inserir(int chave, T dado) {
-        int indice = this.calcularHash(chave);
-
-        if (this.info[indice] == null) {
-            this.info[indice] = new ListaEncadeada<NoMapa<T>>();
-        }
-
-        NoMapa<T> noMapa = new NoMapa<>();
-        noMapa.setChave(chave);
-        noMapa.setValor(dado);
-        this.info[indice].inserir(noMapa);
-    }
-
-    public void remover(int chave) {
-        int indice = this.calcularHash(chave);
-        
-        if (this.info[indice] != null) {
-            NoMapa<T> noMapa = new NoMapa<>();
-            noMapa.setChave(chave);
-
-            this.info[indice].retirar(noMapa);
-        }
-    }
-
-    public T buscar(int chave) {
-        int indice = this.calcularHash(chave);
-        
-        if (this.info[indice] != null) {
-            NoMapa<T> noMapa = new NoMapa<>();
-            noMapa.setChave(chave);
-
-            NoLista<NoMapa<T>> no = this.info[indice].buscar(noMapa);
-
-            if (no != null) {
-                return no.getInfo().getValor();
-            }
-        }
-
-        return null;
-    }
-
-    public double calcularFatorCarga() {
-        int totalElementos = 0;
-        
-        for (ListaEncadeada<NoMapa<T>> lista : this.info) {
-            if (lista != null) {
-                totalElementos += lista.obterComprimento();
-            }
-        }
-
-        return (double) totalElementos / this.info.length;
-    }
-
-    private int calcularHash(int chave) {
-        int tamanho = this.info.length;
-
-        return chave % tamanho;
-    }
-    
-    //Não validado
-    /*private ListaEncadeada<T>[] info;
+    private ListaEncadeada<T>[] info;
     
     public MapaDispersao(int tamanho){
         this.info = (ListaEncadeada<T>[]) new ListaEncadeada[tamanho];
@@ -136,5 +69,5 @@ public class MapaDispersao<T> {
         
         return (double) numElementos / info.length;
     }
-    */
+    
 }

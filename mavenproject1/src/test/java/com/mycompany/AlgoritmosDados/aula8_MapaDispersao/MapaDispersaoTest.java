@@ -47,33 +47,67 @@ public class MapaDispersaoTest {
     public void testInserir() {
         System.out.println("inserir");
         MapaDispersao<Aluno> instance = new MapaDispersao<>(53);
-        LocalDate dtNasc = LocalDate.parse("1200-01-01");
-        Aluno obj1 = new Aluno(12000, "Jean", dtNasc);
-        
+        Aluno obj1 = criarAlunos()[0];
         instance.inserir(obj1.getMatricula(), obj1);
-        assertEquals(instance.buscar(obj1.getMatricula()), obj1);
+        Aluno abj2 = instance.buscar(obj1.getMatricula());
+        
+        assertEquals(abj2, obj1);
     }
     
     @Test
-    public void testInserir1() {
-        MapaDispersao<Aluno> mapa = this.criarMapaPadrao();
-        LocalDate idade = LocalDate.parse("2000-01-01");
+    public void testInserirVarios() {
+        MapaDispersao<Aluno> mapa = new MapaDispersao<>(53);
+        Aluno obj1 = criarAlunos()[0];
+        Aluno obj2 = criarAlunos()[1];
+        Aluno obj3 = criarAlunos()[2];
+        Aluno obj4 = criarAlunos()[3];
 
-        Aluno obj1 = new Aluno(
-            12000,
-            "Jean",
-            idade
-        );
-
-        mapa.inserir(12000, obj1);
-        assertEquals(mapa.buscar(12000), obj1);
+        mapa.inserir(obj1.getMatricula(), obj1);
+        mapa.inserir(obj2.getMatricula(), obj2);
+        mapa.inserir(obj3.getMatricula(), obj3);
+        mapa.inserir(obj4.getMatricula(), obj4);
+        assertEquals(mapa.buscar(obj4.getMatricula()), obj4);
     }
     
-    private MapaDispersao<Aluno> criarMapaPadrao()
-    {
-        return new MapaDispersao<>(53);
+    /**
+     * TESTE COM COLISÃO DE DADOS
+     */
+    @Test
+    public void testBuscar() {
+        MapaDispersao<Aluno> mapa = new MapaDispersao<>(53);
+        Aluno obj1 = criarAlunos()[0];
+        Aluno obj2 = criarAlunos()[1];
+        Aluno obj3 = criarAlunos()[2];
+        Aluno obj4 = criarAlunos()[3];
+        
+        obj3.setMatricula(14226);
+        obj4.setMatricula(17180);
+        
+        mapa.inserir(obj1.getMatricula(), obj1);
+        mapa.inserir(obj2.getMatricula(), obj2);
+        mapa.inserir(obj3.getMatricula(), obj3);
+        mapa.inserir(obj4.getMatricula(), obj4);
+                
+        assertEquals(mapa.buscar(obj4.getMatricula()), obj4);
+        assertEquals(mapa.buscar(obj3.getMatricula()), obj3);
+        assertEquals(mapa.buscar(obj2.getMatricula()), obj2);
+        assertEquals(mapa.buscar(obj1.getMatricula()), obj1);
     }
 
+    /**
+     * Test of calcularFatorCarga method, of class MapaDispersao.
+     */
+    @Test
+    public void testCalcularFatorCarga() {
+        System.out.println("calcularFatorCarga");
+        MapaDispersao instance = null;
+        double expResult = 0.0;
+        double result = instance.calcularFatorCarga();
+        assertEquals(expResult, result, 0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
     private Aluno[] criarAlunos() {
         Aluno[] alunos = new Aluno[4];
         
@@ -101,47 +135,4 @@ public class MapaDispersaoTest {
 
         return alunos;
     }
-
-    /**
-     * Test of remover method, of class MapaDispersao.
-     */
-    @Test
-    public void testRemover() {
-        System.out.println("remover");
-        int chave = 0;
-        MapaDispersao instance = null;
-        instance.remover(chave);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscar method, of class MapaDispersao.
-     */
-    @Test
-    public void testBuscar() {
-        System.out.println("buscar");
-        int chave = 0;
-        MapaDispersao instance = null;
-        Object expResult = null;
-        Object result = instance.buscar(chave);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of calcularFatorCarga method, of class MapaDispersao.
-     */
-    @Test
-    public void testCalcularFatorCarga() {
-        System.out.println("calcularFatorCarga");
-        MapaDispersao instance = null;
-        double expResult = 0.0;
-        double result = instance.calcularFatorCarga();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }

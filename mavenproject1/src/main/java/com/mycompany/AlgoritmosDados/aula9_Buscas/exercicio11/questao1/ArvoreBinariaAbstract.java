@@ -4,8 +4,6 @@
  */
 package com.mycompany.AlgoritmosDados.aula9_Buscas.exercicio11.questao1;
 
-import com.mycompany.AlgoritmosDados.aula6_Arvores.exercicio07.questao01.*;
-
 /**
  *
  * @author User

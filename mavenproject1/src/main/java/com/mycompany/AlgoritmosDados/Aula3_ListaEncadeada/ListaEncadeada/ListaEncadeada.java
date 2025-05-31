@@ -33,7 +33,7 @@ public class ListaEncadeada<T> {
     public NoLista<T> buscar(T valor){
         NoLista<T> p = this.primeiro;
         while(p != null){
-            if(p.getInfo() == valor){
+            if(p.getInfo().equals(valor)){
                 return p;
             }
             p = p.getProximo();

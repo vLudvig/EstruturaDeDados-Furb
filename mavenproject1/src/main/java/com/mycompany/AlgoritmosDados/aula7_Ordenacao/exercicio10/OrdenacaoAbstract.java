@@ -19,6 +19,11 @@ public abstract class OrdenacaoAbstract<T extends Comparable<T>> {
         this.info = info;
     }
     
+    /**
+     * Troca posicao a pela b(b pela a)
+     * @param a valor da posicao a vai para posicao de b
+     * @param b valor da posicao b vai para posicao de a
+     */
     public void trocar(int a, int b){
         T temp = info[a];
         info[a] = info[b];
