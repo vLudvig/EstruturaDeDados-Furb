@@ -10,7 +10,34 @@ package com.mycompany.AlgoritmosDados.aula9_Buscas.exercicio11.questao2;
  */
 public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAbstract<T> {
     public void inserir(T valor){
+        NoArvoreBinaria<T> novo = new NoArvoreBinaria<>(valor);
         
+        if(this.getRaiz() == null){
+            this.setRaiz(novo); //Caso ainda nao possuir uma raiz
+        }else{
+          NoArvoreBinaria<T> p = this.getRaiz();
+          
+          while(true){
+              NoArvoreBinaria<T> pai = p;
+              
+              if(valor.compareTo(p.getInfo()) < 0){ //caso falor for menor fica a esquerda 
+                  p = pai.getEsquerda();
+                  
+                  if(p == null){
+                      pai.setEsquerda(novo);
+                      return;
+                  }
+                  
+              }else{ //caso valor for maior ou igual ele fica a direita 
+                  p = pai.getDireita();
+                  
+                  if(p == null){
+                      pai.setDireita(novo);
+                      return;
+                  }
+              }
+          }
+        }
     }
     
     @Override
@@ -18,11 +45,19 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
         return buscar(this.getRaiz(), info);
     }
     
-    private NoArvoreBinaria<T> buscar(NoArvoreBinaria<T> no, T info){
+    private NoArvoreBinaria<T> buscar(NoArvoreBinaria<T> no, T valor){
         if(no == null){
             return null;
         }
         
-        return null;
+        if(valor.equals(no.getInfo())){
+            return no;
+        }
+        
+        if(valor.compareTo(no.getInfo()) < 0){
+            return buscar(no.getEsquerda(), valor);
+        }else{
+            return buscar(no.getDireita(), valor);
+        }
     }
 }
