@@ -66,6 +66,9 @@ public abstract class ArvoreBinariaAbstract<T> {
         return 1 + contarNos(no.getEsquerda()) + contarNos(no.getDireita());
     }
     
+    public abstract NoArvoreBinaria<T> buscar(T info);
+    
+    //Métodos criados que nao estão no UML passado pelo professor 
      public void inverter() {
         this.inverter(this.raiz);
     }
