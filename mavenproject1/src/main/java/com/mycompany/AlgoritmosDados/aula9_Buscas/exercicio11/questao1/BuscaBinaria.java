@@ -17,9 +17,9 @@ public class BuscaBinaria<T extends Comparable<T>> extends BuscaAbstract {
         
         while(inicio <= fim){
             int meio = (inicio + fim) / 2;
-            if(valor.compareTo(info[meio]) < 0){
+            if(valor.compareTo(info[meio]) < 0){ //Valor procurado é menor que o valor contido no meio?
                 fim = meio - 1;
-            }else if(valor.compareTo(info[meio]) > 0){
+            }else if(valor.compareTo(info[meio]) > 0){//Valor procurado é maior que o valor contido no meio?
                 inicio = meio + 1;
             }else{
                 return meio;

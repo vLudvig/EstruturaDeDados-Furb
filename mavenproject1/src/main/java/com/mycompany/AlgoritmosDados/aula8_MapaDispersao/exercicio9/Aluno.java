@@ -10,7 +10,7 @@ import java.time.LocalDate;
  *
  * @author User
  */
-public class Aluno {
+public class Aluno implements Comparable<Aluno> {
     private int matricula;
     private String nome;
     private LocalDate dataNascimento;
@@ -48,4 +48,16 @@ public class Aluno {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
+    
+    @Override
+    public int compareTo(Aluno n){
+        if(n.getMatricula() > this.matricula){
+            return -1;
+        }else if(n.getMatricula() < this.matricula){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+        
 }

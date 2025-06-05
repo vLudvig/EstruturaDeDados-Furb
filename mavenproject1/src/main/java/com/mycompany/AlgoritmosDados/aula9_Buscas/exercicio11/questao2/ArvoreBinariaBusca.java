@@ -16,12 +16,13 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
             this.setRaiz(novo); //Caso ainda nao possuir uma raiz
         }else{
           NoArvoreBinaria<T> p = this.getRaiz();
+          NoArvoreBinaria<T> pai;
           
           while(true){
-              NoArvoreBinaria<T> pai = p;
+              pai = p;
               
-              if(valor.compareTo(p.getInfo()) < 0){ //caso falor for menor fica a esquerda 
-                  p = pai.getEsquerda();
+              if(valor.compareTo(p.getInfo()) < 0){ //caso valor for menor fica a esquerda 
+                  p = p.getEsquerda();
                   
                   if(p == null){
                       pai.setEsquerda(novo);
@@ -29,7 +30,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
                   }
                   
               }else{ //caso valor for maior ou igual ele fica a direita 
-                  p = pai.getDireita();
+                  p = p.getDireita();
                   
                   if(p == null){
                       pai.setDireita(novo);
