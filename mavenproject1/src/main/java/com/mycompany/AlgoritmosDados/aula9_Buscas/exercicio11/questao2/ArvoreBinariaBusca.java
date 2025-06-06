@@ -61,4 +61,96 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
             return buscar(no.getDireita(), valor);
         }
     }
+    
+    public void retirar(T valor){
+        NoArvoreBinaria<T> p = this.getRaiz();
+        NoArvoreBinaria<T> pai = null;
+        boolean filhoEsquerda = false;
+        
+        //Localizar no a ser removido
+        while(p != null && !p.getInfo().equals(valor)){
+            pai = p;
+            if(valor.compareTo(p.getInfo()) < 0){
+                filhoEsquerda = true;
+                p = p.getEsquerda();
+            }else{
+                filhoEsquerda = false;
+                p = p.getDireita();
+            }
+        }
+        
+        if(p != null){
+            //se verdadeiro, o no a ser removido é uma folha!
+            if(p.getEsquerda() == null && p.getDireita() == null){
+                if(p.equals(this.getRaiz())){
+                    this.setRaiz(null);
+                }else{
+                    if(filhoEsquerda){
+                        pai.setEsquerda(null);
+                    }else{
+                        pai.setDireita(null);
+                    }
+                }
+            }else{
+                //Se verdadeiro(caso 2) no com um filho a esquerda
+                if(p.getDireita() == null){
+                    if(p.equals(this.getRaiz())){
+                        this.setRaiz(p.getEsquerda());
+                    }else{
+                        if(filhoEsquerda){
+                            pai.setEsquerda(p.getEsquerda());
+                        }else{
+                            pai.setDireita(p.getEsquerda());
+                        }
+                    }
+                }else{//caso 2 mas o no a ser removido possui o filho a direita
+                    if(p.getEsquerda() == null){
+                        if(p.equals(this.getRaiz())){
+                            this.setRaiz(p.getDireita());
+                        }else{
+                            if(filhoEsquerda){
+                                pai.setEsquerda(p.getDireita());
+                            }else{
+                                pai.setDireita(p.getDireita());
+                            }
+                        }
+                    }else{//Nó com DOIS filhos
+                        NoArvoreBinaria<T> sucessor = extrairSucessor(p);
+                        
+                        if(p.equals(this.getRaiz())){
+                            this.setRaiz(sucessor);
+                        }else{
+                            if(filhoEsquerda){
+                                pai.setEsquerda(sucessor);
+                            }else{
+                                pai.setDireita(sucessor);
+                            }
+                        }
+                        
+                        sucessor.setEsquerda(p.getEsquerda());
+                    }
+                }
+            }
+        }
+    }
+    
+    public NoArvoreBinaria<T> extrairSucessor(NoArvoreBinaria<T> p){
+        NoArvoreBinaria<T> atual = p.getDireita();
+        NoArvoreBinaria<T> paiSucessor = p;
+        NoArvoreBinaria<T> sucessor = p;
+        
+        while(atual != null){
+            paiSucessor = sucessor;
+            sucessor = atual;
+            atual = atual.getEsquerda();
+        }
+        
+        if(sucessor.equals(p.getDireita())){
+            paiSucessor.setEsquerda(sucessor.getDireita());
+            sucessor.setDireita(p.getDireita());
+        }
+        
+        return sucessor;
+    }
+    
 }
