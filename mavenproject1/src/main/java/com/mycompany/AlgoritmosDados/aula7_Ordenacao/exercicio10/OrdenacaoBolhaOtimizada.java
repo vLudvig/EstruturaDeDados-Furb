@@ -9,7 +9,7 @@ package com.mycompany.AlgoritmosDados.aula7_Ordenacao.exercicio10;
  * @author User
  */
 public class OrdenacaoBolhaOtimizada<T extends Comparable<T>> extends OrdenacaoAbstract<T>{
-     @Override
+    @Override
     public void ordenar() {
         T[] info = this.getInfo();
         int tamanhoLista = info.length;
@@ -28,16 +28,13 @@ public class OrdenacaoBolhaOtimizada<T extends Comparable<T>> extends OrdenacaoA
                 break;
             }
 
-            // if (trocou) {
-            //     break;
-            // }
         }
     }
     
     public void ordenarAntigo(){
         /**
          * variavel local que referencia a mesma variavel da superClasse 
-         * (ao alterar "vetor", info da super classe tbm altera)
+         * (ao alterar "vetor", "info" da super classe tbm altera)
         */
         T[] vetor = this.getInfo(); 
         

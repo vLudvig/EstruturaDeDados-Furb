@@ -42,7 +42,7 @@ public class OrdenacaoQuickSortTest {
     @Test
     public void testOrdenar() {
         System.out.println("ordenar");
-        OrdenacaoBolha instance = new OrdenacaoBolha();
+        OrdenacaoQuickSort instance = new OrdenacaoQuickSort();
         Integer info2[] = new Integer[] {70,2,88,15,90,30};
         
         for(Integer i : info2){
