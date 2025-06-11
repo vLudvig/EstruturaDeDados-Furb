@@ -14,7 +14,7 @@ public class BuscaLinearVetorOrdenado<T extends Comparable<T>> extends BuscaAbst
         
         for(int i = 0; i < info.length; i++){
             if(info[i].compareTo(valor) > 0){
-                return -1;
+                return -1;//iterrompe busca caso valor do vetor for maior que o procurado
             }
             
             if(valor.equals(info[i])){
